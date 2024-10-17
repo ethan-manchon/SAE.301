@@ -1,12 +1,12 @@
-import { genericRenderer } from "../../lib/utils.js"; 
+import { genericRenderer } from "../../../../lib/utils.js"; 
 
-const templateFile = await fetch("src/ui/footer/template.html.inc");
+const templateFile = await fetch("src/ui/Product__page/Product__option/Product__option__select/template.html.inc");
 const template = await templateFile.text();
 
 // changer le template pour chaque template qui nous serront utilient
 
 
-let FooterView = {
+let Productoptionselect = {
 
     render: function(data){
         let html = "";
@@ -15,8 +15,7 @@ let FooterView = {
         }
         return html;
     },
-
 }
 
 
-export {FooterView};
+export {Productoptionselect};
