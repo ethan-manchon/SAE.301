@@ -1,30 +1,21 @@
 import { genericRenderer } from "../../lib/utils.js"; 
-
 const templateFile = await fetch("src/ui/navbar/template.html.inc");
 const template = await templateFile.text();
 
 // changer le template pour chaque template qui nous serront utilient
 
 
-let NavbarView = {
+let CategView = {
 
-    render: function(data){
+    render: function(){
         let html = "";
-        for(let obj of data){
-            html += genericRenderer(template, obj);
-        }
+
+        html += genericRenderer(template);
+
         return html;
     },
 
+};
 
-    // regarder
-    init: function(){
-        let filtres = document.querySelectorAll("#button"); // changer car se ne sera pas forcément la même chose
-        filtres.addEventListener("click", C.handler_clickOnfilter);
-    }
+export { CategView };
 
-}
-
-
-
-export {NavbarView};

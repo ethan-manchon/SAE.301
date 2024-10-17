@@ -58,7 +58,29 @@ class ProductRepository extends EntityRepository {
        
         return $res;
     }
+    public function findAllByCategory($categ): array {
+        $requete = $this->cnx->prepare("SELECT * FROM Product WHERE category_id=:value");
+        $requete->bindParam(':value', $categ);
+        $requete->execute();
+        $answer = $requete->fetchAll(PDO::FETCH_OBJ);
 
+        $res = [];
+        if ($answer) {
+            foreach($answer as $obj){
+                $p = new Product($obj->id);
+                $p->setName($obj->name);
+                $p->setPrice($obj->price);
+                $p->setDescription($obj->description);
+                $p->setVolume($obj->volume);
+                $p->setCategoryId($obj->category_id);
+                $p->setImage($obj->image);
+                array_push($res, $p);
+            }
+        }
+       
+        return $res;
+    }
+    
     public function save($product): bool {
         $requete = $this->cnx->prepare("INSERT INTO Product (name, price, description, volume, category_id, image) VALUES (:name, :price, :description, :volume, :category_id, :image)");
         $name = $product->getName();

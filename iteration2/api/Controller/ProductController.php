@@ -17,7 +17,7 @@ class ProductController extends Controller {
         $id = $request->getId("id");
         if ($id){
             // URI is .../products/{id}
-            $p = $this->products->find($id);
+            $p = $this->products->find($id); 
             return $p == null ? false : $p;
         } else {
             // URI is .../products

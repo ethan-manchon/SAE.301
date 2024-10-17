@@ -6,7 +6,7 @@ const template = await templateFile.text();
 // changer le template pour chaque template qui nous serront utilient
 
 
-let FooterView = {
+let ProductView = {
 
     render: function(data){
         let html = "";
@@ -19,4 +19,5 @@ let FooterView = {
 }
 
 
-export {FooterView};
+
+export {ProductView};
