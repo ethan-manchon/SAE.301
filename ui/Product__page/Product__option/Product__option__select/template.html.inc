@@ -1,1 +1,0 @@
-<div class="flex flex-row justify-evenly"><img class="w-fit h-fit" src="{{optionimg}}" alt="option de produit {{optionname}}"><p class="">{{optionname}}</p></div>>
