@@ -6,10 +6,15 @@ import { POData } from "./data/PO.js";
 import { ProductView } from "./ui/product/index.js";
 import { CategView } from "./ui/navbar/index.js";
 import { ProductpageView } from "./ui/productPage/index.js";
+
+
 import { productOption } from "./ui/productPage/productOption/index.js";
 
 
-// import { productOption} from "./ui/productPage/productOption/index.js";
+//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
+//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
+//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
+//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
 
 // The controller (C)
 
@@ -63,16 +68,17 @@ C.handler_clickOnProduct = async function(ev){
         let id = ev.target.dataset.id;
         let data = await ProductData.fetch(id);
         let data2 = await POData.fetchAllByIdProduct(id);
-        console.log(data2);
 
-        // html =+ productOption.render(data2);
         let html = ProductpageView.render(data);
         html += productOption.render(data2);
 
+
         let main = document.querySelector("#main");
         main.innerHTML = html;
+        
     }
 }
 
 
 C.init();
+

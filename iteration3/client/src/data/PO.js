@@ -13,7 +13,7 @@ POData.fetchAll = async function(){
     return data;
 }
 POData.fetchAllByIdProduct = async function(id){
-    let data = await getRequest('PO?product_id='+id); 
+    let data = await getRequest('PO?product_id='+id);
     return data;
 }
 export {POData};
