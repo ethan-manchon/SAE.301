@@ -7,14 +7,7 @@ import { ProductView } from "./ui/product/index.js";
 import { CategView } from "./ui/navbar/index.js";
 import { ProductpageView } from "./ui/productPage/index.js";
 
-
 import { productOption } from "./ui/productPage/productOption/index.js";
-
-
-//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
-//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
-//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
-//  OUBLIE PAS QUE LES LAMPES SONT MAL ASSOCIÉES AVEC LES CATEGORIES 
 
 // The controller (C)
 
