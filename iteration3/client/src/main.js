@@ -6,6 +6,7 @@ import { POData } from "./data/PO.js";
 import { ProductView } from "./ui/product/index.js";
 import { CategView } from "./ui/navbar/index.js";
 import { ProductpageView } from "./ui/productPage/index.js";
+import { productOption } from "./ui/productPage/productOption/index.js";
 
 
 // import { productOption} from "./ui/productPage/productOption/index.js";
@@ -66,10 +67,10 @@ C.handler_clickOnProduct = async function(ev){
 
         // html =+ productOption.render(data2);
         let html = ProductpageView.render(data);
+        html += productOption.render(data2);
 
         let main = document.querySelector("#main");
         main.innerHTML = html;
-
     }
 }
 

@@ -12,8 +12,7 @@
 
     <div class="flex flex-col gap-5 justify-evenly w-full">
 
-      <ul class="list-none"> 
-        {{Product__option}}
+      <ul id="productListe" class="list-none"> 
        </ul>
 
       <button

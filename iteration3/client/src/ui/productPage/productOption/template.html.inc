@@ -1,5 +1,1 @@
-<li class="flex flex-col w-full h-fit gap-5">
-  <ul class="">
-    {{options}}
-  </ul>
-</li>
+<li id="{{option_id}}" class="list-none font-DM text-center px-12 py-4">{{option_value}}</li>
