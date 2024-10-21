@@ -16,7 +16,6 @@ let ProductpageView = {
         
         let option = productOption.render(data, i);
             html = html.replace("{{Option}}", option);
-            console.log(html);
         return html;
     },
 }

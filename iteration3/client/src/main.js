@@ -59,7 +59,7 @@ C.handler_clickOnProduct = async function(ev){
     if (article) {
         let id = article.dataset.id;
         let data = await ProductData.fetch(id);
-        document.querySelector("#main").innerHTML = ProductpageView.render(data, 0);
+        document.querySelector("#main").innerHTML = ProductpageView.render(data, data.options[0].value);
         C.OptionChange(); // Attach the change event after rendering the product page
     }
 }
@@ -73,11 +73,13 @@ C.OptionChange = function(){
 }
 
 C.handler_changeOnOption = async function(ev){
-    let selectedIndex = ev.target.selectedIndex;
+    console.dir(ev.target);
+    let Value = ev.target.value;
+    console.log("value de l'option", ev.target.value);
     let id = ev.target.closest('section').dataset.id;
-    console.log(id);
+    console.log("id", id);
     let data = await ProductData.fetch(id);
-    document.querySelector("#main").innerHTML = ProductpageView.render(data, selectedIndex);
+    document.querySelector("#main").innerHTML = ProductpageView.render(data, Value);
     C.OptionChange();
 }
 
