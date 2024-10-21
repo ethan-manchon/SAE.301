@@ -1,8 +1,4 @@
-<div class="flex flex-row justify-center align-middle w-full h-full font-DM">
-
-  <!-- <div class="w-full h-full">
-    <img class="w-fit h-fit" src="{{image}}" alt="image du produit {{name}}" />
-  </div> -->
+<section data-id="{{id}}" class="flex flex-row justify-center align-middle w-full h-full font-DM">
 
   <div class="flex flex-col w-full h-fit gap-5 justify-center align-top">
     <div class="flex flex-row justify-evenly">
@@ -13,10 +9,11 @@
     <div class="flex flex-col gap-5 justify-evenly w-full">
 
       <div id="listeOption" class="flex flex-col gap-5"> 
+      {{Option}}
        </div>
 
       <button class="bg-black text-black font-DM font-semibold text-center w-full h-fit p-2"> Add to bag </button>
     </div>
 
   </div>
-</div>
+</section>

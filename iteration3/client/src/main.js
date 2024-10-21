@@ -1,6 +1,5 @@
 // Import data (M)
 import { ProductData } from "./data/product.js";
-import { POData } from "./data/PO.js";
 
 // Import UI (V)
 import { ProductView } from "./ui/product/index.js";
@@ -26,8 +25,8 @@ C.AllProduct = async function(){
     let html = ProductView.render(data);
     let main = document.querySelector("#main");
     main.innerHTML = html;
-
 }
+
 // Affichage de la barre de navigation
 C.NavBar = async function(){ 
     let html = CategView.render();
@@ -50,28 +49,38 @@ C.handler_clickOnCategory = async function(ev){
     }
 }
 
-// Selection d'un produit
+// Sélection d'un produit
 C.ProductSelect = function(){
-    let main = document.querySelector("#main"); 
-    main.addEventListener("click", C.handler_clickOnProduct);
+    document.querySelector("#main").addEventListener("click", C.handler_clickOnProduct);
 }
 
 C.handler_clickOnProduct = async function(ev){
-    if (ev.target.closest('article')) {
-        let id = ev.target.dataset.id;
+    let article = ev.target.closest('article');
+    if (article) {
+        let id = article.dataset.id;
         let data = await ProductData.fetch(id);
-        let data2 = await POData.fetchAllByIdProduct(id);
-
-        let html = ProductpageView.render(data);
-        html += productOption.render(data2);
-
-
-        let main = document.querySelector("#main");
-        main.innerHTML = html;
-        
+        document.querySelector("#main").innerHTML = ProductpageView.render(data, 0);
+        C.OptionChange(); // Attach the change event after rendering the product page
     }
 }
 
+// Changement d'option
+C.OptionChange = function(){
+    let select = document.querySelector("#select");
+    if (select) {
+        select.addEventListener("change", C.handler_changeOnOption);
+    }
+}
+
+C.handler_changeOnOption = async function(ev){
+    let selectedIndex = ev.target.selectedIndex;
+    let id = ev.target.closest('section').dataset.id;
+    console.log(id);
+    let data = await ProductData.fetch(id);
+    document.querySelector("#main").innerHTML = ProductpageView.render(data, selectedIndex);
+    C.OptionChange();
+}
+
+window.ProductData = ProductData;
 
 C.init();
-

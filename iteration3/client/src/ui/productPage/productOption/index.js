@@ -4,51 +4,40 @@ const templateFile = await fetch("src/ui/productPage/productOption/template.html
 const template = await templateFile.text();
 
 let productOption = {
-    render: function(data) {
+
+    render: function(data, i) {
+        // Utiliser genericRenderer pour remplacer les placeholders dans le template
+        let html = genericRenderer(template, data.options[i]);
         // Créer un élément div temporaire pour contenir le template
         let tempContainer = document.createElement('div');
-        tempContainer.innerHTML = template;
-        
+        tempContainer.innerHTML = html;
 
         // Créer les options pour le select à partir des données
         let selectElement = tempContainer.querySelector('#select');
-        // Boucle à travers chaque objet dans les données
-        for (let obj of data) {
-            // Crée un nouvel élément option pour le select
-            let option = document.createElement("option");
-            // Définit la valeur de l'option à la valeur de l'objet
-            option.value = obj.option_value;
-            // Définit le texte affiché de l'option à la valeur de l'objet
-            option.textContent = obj.option_value;
-            // Ajoute l'option à l'élément select
-            selectElement.appendChild(option);
+        if (data.options && data.options.length > 0) {
+            // Ajouter l'option correspondant à data.options[i] en premier
+            let firstOption = document.createElement("option");
+            firstOption.value = data.options[i].value;
+            firstOption.textContent = data.options[i].value;
+            selectElement.appendChild(firstOption);
+
+            // Ajouter les autres options
+            for (let j = 0; j < data.options.length; j++) {
+            if (j !== i) {
+                let optionElement = document.createElement("option");
+                optionElement.value = data.options[j].value;
+                optionElement.textContent = data.options[j].value;
+                selectElement.appendChild(optionElement);
+            }
+            }
         }
 
-        // Ajouter les options à l'élément select
-        selectElement.addEventListener('change', function() {
-            let selectedOption = data.find(option => option.option_name === selectElement.name);
-            console.log(option_name);
-            console.log(selectElement.name);
-            console.log(data.find(option => option.option_name === selectElement.name));
-            // console.log(selectedOption);
-
-            if (selectedOption !== undefined) {
-                // Remplacer les placeholders dans le template avec les données de l'option choisie dans le select
-                tempContainer.innerHTML = genericRenderer(template, selectedOption);
-            }
-            else {
-                console.log("Option not found");
-            }
-        });
-
         // Sérialiser le modèle modifié en une chaîne HTML
-        let html = tempContainer.innerHTML;
+        html = tempContainer.innerHTML;
 
         // Retourner le HTML
         return html;
-
-    }      
-};
+    }
+}
 
 export { productOption };
-

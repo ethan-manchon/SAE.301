@@ -1,4 +1,5 @@
 import { genericRenderer } from "../../lib/utils.js"; 
+import { productOption } from "./productOption/index.js";
 
 
 const templateFile = await fetch("src/ui/productPage/template.html.inc");
@@ -9,9 +10,13 @@ const template = await templateFile.text();
 
 let ProductpageView = {
 
-    render: function(data){
+    render: function(data, i){
         let html = "";
             html += genericRenderer(template, data);
+        
+        let option = productOption.render(data, i);
+            html = html.replace("{{Option}}", option);
+            console.log(html);
         return html;
     },
 }
