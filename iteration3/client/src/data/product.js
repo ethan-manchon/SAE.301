@@ -1,4 +1,6 @@
 import {getRequest} from '../lib/api-request.js';
+import { POData } from './PO.js';
+
 
 let ProductData = {};
 
@@ -11,11 +13,11 @@ ProductData.fetchAll = async function(){
     let data = await getRequest('product');
     return data;
 }
-
 ProductData.fetchAllByCategory = async function(category){
     let data = await getRequest('product?category='+category);
     return data;
 }
+
 
 export {ProductData};
 

@@ -1,6 +1,6 @@
-import { genericRenderer } from "../../lib/utils.js"; 
+// import { genericRenderer } from "../../lib/utils.js"; 
 
-const templateFile = await fetch("src/ui/header_background/template.html.inc");
+const templateFile = await fetch("src/ui/headerBackground/template.html.inc");
 const template = await templateFile.text();
 
 // changer le template pour chaque template qui nous serront utilient
@@ -8,14 +8,11 @@ const template = await templateFile.text();
 
 let HeadBackView = {
 
-    render: function(data){
+    render: function(){
         let html = "";
-        for(let obj of data){
-            html += genericRenderer(template, obj);
-        }
+        html += template;
         return html;
     },
-
 }
 
 

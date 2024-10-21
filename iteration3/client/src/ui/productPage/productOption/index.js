@@ -6,20 +6,15 @@ const template = await templateFile.text();
 let productOption = {
 
     render: function(data, i) {
-        console.log("Data received:", data);
-        console.log("Index received:", i);
 
         // Utiliser genericRenderer pour remplacer les placeholders dans le template
         let j = data.options.findIndex(option => option.value === i);
-        console.log("Index of the selected option:", j);
 
         if (j === -1) {
-            console.error("Option not found in data.options");
             return "";
         }
 
         let html = genericRenderer(template, data.options[j]);
-        console.log("HTML after genericRenderer:", html);
 
         // Créer un élément div temporaire pour contenir le template
         let tempContainer = document.createElement('div');
@@ -47,7 +42,6 @@ let productOption = {
 
         // Sérialiser le modèle modifié en une chaîne HTML
         html = tempContainer.innerHTML;
-        console.log("Final HTML:", html);
 
         // Retourner le HTML
         return html;

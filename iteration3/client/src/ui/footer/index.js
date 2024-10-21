@@ -6,13 +6,11 @@ const template = await templateFile.text();
 // changer le template pour chaque template qui nous serront utilient
 
 
-let ProductView = {
+let FooterView = {
 
-    render: function(data){
+    render: function(){
         let html = "";
-        for(let obj of data){
-            html += genericRenderer(template, obj);
-        }
+        html += template;
         return html;
     },
 
@@ -20,4 +18,4 @@ let ProductView = {
 
 
 
-export {ProductView};
+export {FooterView};

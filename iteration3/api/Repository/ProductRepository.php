@@ -14,11 +14,29 @@ require_once("Class/Product.php");
  *  c'est utile !
  *  
  */
-class ProductRepository extends EntityRepository {
+abstract class ProductRepository extends EntityRepository {
 
     public function __construct(){
         // appel au constructeur de la classe mère (va ouvrir la connexion à la bdd)
         parent::__construct();
+    }
+
+    public function find($id): ?Product{
+        $requete = $this->cnx->prepare("SELECT * FROM Product WHERE id=:value");
+        $requete->bindParam(':value', $id);
+        $requete->execute();
+        $answer = $requete->fetch(PDO::FETCH_OBJ);
+        
+        if ($answer == false) return null;
+        
+        $p = new Product($answer->id);
+        $p->setName($answer->name);
+        $p->setPrice($answer->price);
+        $p->setDescription($answer->description);
+        $p->setVolume($answer->volume);
+        $p->setCategoryId($answer->category_id);
+        $p->setImage($answer->image);
+        return $p;
     }
 
     public function findAll(): array {
@@ -61,58 +79,6 @@ class ProductRepository extends EntityRepository {
         }
        
         return $res;
-    }
-    
-    public function find($id): ?array {
-        $requete = $this->cnx->prepare("
-            SELECT 
-                p.id AS product_id,
-                p.name AS product_name,
-                p.price,
-                p.description,
-                p.volume,
-                p.category_id,
-                p.image,
-                o.id AS option_id,
-                o.name AS option_name,
-                o.valeur AS option_value,
-                po.url AS option_url
-            FROM 
-                Product p
-            JOIN 
-                ProductOption po ON p.id = po.product_id
-            JOIN 
-                Options o ON po.option_id = o.id
-            WHERE 
-                p.id = :id
-        ");
-        $requete->bindParam(':id', $id);
-        $requete->execute();
-        $answer = $requete->fetchAll(PDO::FETCH_OBJ);
-
-        if (!$answer) return null;
-
-        $product = [
-            'id' => $answer[0]->product_id,
-            'name' => $answer[0]->product_name,
-            'price' => $answer[0]->price,
-            'description' => $answer[0]->description,
-            'volume' => $answer[0]->volume,
-            'category_id' => $answer[0]->category_id,
-            'image' => $answer[0]->image,
-            'options' => []
-        ];
-
-        foreach ($answer as $obj) {
-            $product['options'][] = [
-                'id' => $obj->option_id,
-                'name' => $obj->option_name,
-                'value' => $obj->option_value,
-                'url' => $obj->option_url
-            ];
-        }
-
-        return $product;
     }
     
     public function save($product): bool {
