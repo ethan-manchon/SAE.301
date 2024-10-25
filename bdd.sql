@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 24 oct. 2024 à 12:59
+-- Généré le : ven. 25 oct. 2024 à 14:50
 -- Version du serveur : 10.11.6-MariaDB-0+deb12u1
 -- Version de PHP : 8.1.29
 
@@ -20,6 +20,48 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `manchon3`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Cart`
+--
+
+CREATE TABLE `Cart` (
+  `id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Cart`
+--
+
+INSERT INTO `Cart` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
+(44, 67, 7, 1),
+(45, 68, 1, 1),
+(46, 69, 1, 2),
+(47, 70, 1, 3),
+(48, 70, 4, 1),
+(49, 70, 6, 1),
+(50, 70, 5, 1),
+(51, 70, 16, 4),
+(52, 70, 9, 1),
+(53, 71, 7, 3),
+(54, 72, 1, 2),
+(55, 73, 1, 1),
+(56, 74, 2, 2),
+(57, 75, 7, 1),
+(58, 76, 1, 3),
+(59, 77, 2, 2),
+(60, 77, 7, 2),
+(61, 77, 1, 1),
+(62, 78, 2, 2),
+(63, 79, 1, 2),
+(64, 80, 7, 3),
+(65, 80, 8, 2),
+(66, 81, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -79,37 +121,13 @@ INSERT INTO `Options` (`id`, `name`, `valeur`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Users`
---
-
-CREATE TABLE `Users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `firstname` varchar(50) NOT NULL,
-  `phone` varchar(10) DEFAULT NULL,
-  `mail` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `Users`
---
-
-INSERT INTO `Users` (`id`, `name`, `firstname`, `phone`, `mail`, `password`) VALUES
-(36, 'Manchon', 'Ethan', '0667699771', 'ethan.manchon@etu.unilim.fr', '$2y$10$RBkXQtit713loXN98ruFHeRT/OGVP25zZ8v4u/5lIQKVrg1/LBqES'),
-(38, 'Donzaud', 'Francois', '0675847114', 'francois.donzaud@etu.unilim.fr', '$2y$10$aHC4sew6NI9YAtmAV2L7Bup9Ch0cSWLz2IQEDb9udlpiD.rmTJKuq'),
-(45, 'test', 'oui', '0222121567', 'non@gmail.com', '$2y$10$4Hxegk3cQcsrg5MmC2m5TOhfq9jjOzwyERfcYBtcv05vPjDB.qKke');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `Orders`
 --
 
 CREATE TABLE `Orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `total` int(11) NOT NULL
+  `total` decimal(11,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -117,11 +135,21 @@ CREATE TABLE `Orders` (
 --
 
 INSERT INTO `Orders` (`id`, `user_id`, `total`) VALUES
-(1, 36, 0),
-(2, 38, 0),
-(3, 45, 0),
-(5, 36, 0),
-(6, 38, 0);
+(67, 36, '350'),
+(68, 36, '854'),
+(69, 36, '1708'),
+(70, 38, '6479'),
+(71, 36, '1050'),
+(72, 36, '1708'),
+(73, 36, '1708'),
+(74, 36, '0'),
+(75, 36, '0'),
+(76, 38, '2847'),
+(77, 36, '0'),
+(78, 38, '198'),
+(79, 38, '198'),
+(80, 36, '1575'),
+(81, 36, '350');
 
 -- --------------------------------------------------------
 
@@ -192,35 +220,6 @@ INSERT INTO `ProductOption` (`id`, `product_id`, `option_id`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Cart`
---
-
-CREATE TABLE `Cart` (
-  `id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `Cart`
---
-
-INSERT INTO `Cart` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 2),
-(2, 2, 2, 1),
-(3, 3, 3, 3),
-(4, 3, 4, 1),
-(5, 4, 5, 2),
-(6, 4, 6, 1),
-(7, 5, 7, 3),
-(8, 5, 8, 1),
-(9, 6, 9, 2),
-(10, 6, 10, 1);
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `Promo`
 --
 
@@ -236,13 +235,43 @@ CREATE TABLE `Promo` (
 
 INSERT INTO `Promo` (`id`, `name`, `discount`) VALUES
 (1, 'MADE10', '10'),
-(2, 'BlackFriday', '50');
+(2, 'BlackFriday', '50'),
+(6, 'MADE20', '20');
 
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Users`
+--
+
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `mail` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Users`
+--
+
+INSERT INTO `Users` (`id`, `name`, `firstname`, `phone`, `mail`, `password`) VALUES
+(36, 'Manchon', 'Ethan', '0667699771', 'ethan.manchon@etu.unilim.fr', '$2y$10$RBkXQtit713loXN98ruFHeRT/OGVP25zZ8v4u/5lIQKVrg1/LBqES'),
+(38, 'Donzaud', 'Francois', '0675847114', 'francois.donzaud@etu.unilim.fr', '$2y$10$aHC4sew6NI9YAtmAV2L7Bup9Ch0cSWLz2IQEDb9udlpiD.rmTJKuq');
+
+--
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `Cart`
+--
+ALTER TABLE `Cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `cart_id` (`cart_id`);
 
 --
 -- Index pour la table `Category`
@@ -255,13 +284,6 @@ ALTER TABLE `Category`
 --
 ALTER TABLE `Options`
   ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `Users`
---
-ALTER TABLE `Users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `mail` (`mail`);
 
 --
 -- Index pour la table `Orders`
@@ -286,22 +308,27 @@ ALTER TABLE `ProductOption`
   ADD KEY `ProductOption_ibfk_1` (`product_id`);
 
 --
--- Index pour la table `Cart`
---
-ALTER TABLE `Cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `cart_id` (`cart_id`);
-
---
 -- Index pour la table `Promo`
 --
 ALTER TABLE `Promo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `mail` (`mail`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `Cart`
+--
+ALTER TABLE `Cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT pour la table `Category`
@@ -316,16 +343,10 @@ ALTER TABLE `Options`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT pour la table `Users`
---
-ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
 -- AUTO_INCREMENT pour la table `Orders`
 --
 ALTER TABLE `Orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT pour la table `Product`
@@ -340,16 +361,16 @@ ALTER TABLE `ProductOption`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT pour la table `Cart`
---
-ALTER TABLE `Cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT pour la table `Promo`
 --
 ALTER TABLE `Promo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT pour la table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Contraintes pour les tables déchargées
@@ -373,14 +394,6 @@ ALTER TABLE `Product`
 ALTER TABLE `ProductOption`
   ADD CONSTRAINT `ProductOption_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
   ADD CONSTRAINT `ProductOption_ibfk_2` FOREIGN KEY (`option_id`) REFERENCES `Options` (`id`);
-
---
--- Contraintes pour la table `Cart`
---
-ALTER TABLE `Cart`
-  ADD CONSTRAINT `Cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `ProductOption` (`id`),
-  ADD CONSTRAINT `Cart_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `Orders` (`id`);
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
