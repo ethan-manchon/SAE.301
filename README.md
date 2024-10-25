@@ -1,3 +1,6 @@
 # SAE.301
-https://prod.liveshare.vsengsaas.visualstudio.com/join?2D8395BA507DCC8E42CC9C26A010E3A2B408
+Développement d'un site web de e-commerce dans une cadre d'un projet scolaire itératif. 
+Découverte du modèle d'une API REST, de la gestion d'un panier et d'un tunnel de connexion
 
+
+Insipiration du site Made.com
