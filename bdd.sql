@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 23 oct. 2024 à 14:10
+-- Généré le : jeu. 24 oct. 2024 à 12:59
 -- Version du serveur : 10.11.6-MariaDB-0+deb12u1
 -- Version de PHP : 8.1.29
 
@@ -20,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `manchon3`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Cart`
---
-
-CREATE TABLE `Cart` (
-  `id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -92,14 +79,49 @@ INSERT INTO `Options` (`id`, `name`, `valeur`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Users`
+--
+
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `mail` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Users`
+--
+
+INSERT INTO `Users` (`id`, `name`, `firstname`, `phone`, `mail`, `password`) VALUES
+(36, 'Manchon', 'Ethan', '0667699771', 'ethan.manchon@etu.unilim.fr', '$2y$10$RBkXQtit713loXN98ruFHeRT/OGVP25zZ8v4u/5lIQKVrg1/LBqES'),
+(38, 'Donzaud', 'Francois', '0675847114', 'francois.donzaud@etu.unilim.fr', '$2y$10$aHC4sew6NI9YAtmAV2L7Bup9Ch0cSWLz2IQEDb9udlpiD.rmTJKuq'),
+(45, 'test', 'oui', '0222121567', 'non@gmail.com', '$2y$10$4Hxegk3cQcsrg5MmC2m5TOhfq9jjOzwyERfcYBtcv05vPjDB.qKke');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Orders`
 --
 
 CREATE TABLE `Orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Orders`
+--
+
+INSERT INTO `Orders` (`id`, `user_id`, `total`) VALUES
+(1, 36, 0),
+(2, 38, 0),
+(3, 45, 0),
+(5, 36, 0),
+(6, 38, 0);
 
 -- --------------------------------------------------------
 
@@ -170,6 +192,35 @@ INSERT INTO `ProductOption` (`id`, `product_id`, `option_id`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Cart`
+--
+
+CREATE TABLE `Cart` (
+  `id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `Cart`
+--
+
+INSERT INTO `Cart` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
+(1, 1, 1, 2),
+(2, 2, 2, 1),
+(3, 3, 3, 3),
+(4, 3, 4, 1),
+(5, 4, 5, 2),
+(6, 4, 6, 1),
+(7, 5, 7, 3),
+(8, 5, 8, 1),
+(9, 6, 9, 2),
+(10, 6, 10, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Promo`
 --
 
@@ -190,38 +241,8 @@ INSERT INTO `Promo` (`id`, `name`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Users`
---
-
-CREATE TABLE `Users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `firstname` varchar(50) NOT NULL,
-  `phone` varchar(10) DEFAULT NULL,
-  `mail` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `Users`
---
-
-INSERT INTO `Users` (`id`, `name`, `firstname`, `phone`, `mail`, `password`) VALUES
-(36, 'Manchon', 'Ethan', '0667699771', 'ethan.manchon@etu.unilim.fr', '$2y$10$RBkXQtit713loXN98ruFHeRT/OGVP25zZ8v4u/5lIQKVrg1/LBqES'),
-(38, 'Donzaud', 'Francois', '0675847114', 'francois.donzaud@etu.unilim.fr', '$2y$10$aHC4sew6NI9YAtmAV2L7Bup9Ch0cSWLz2IQEDb9udlpiD.rmTJKuq'),
-(45, 'test', 'oui', '0222121567', 'non@gmail.com', '$2y$10$4Hxegk3cQcsrg5MmC2m5TOhfq9jjOzwyERfcYBtcv05vPjDB.qKke'),
-(47, 'test', 'OUI', '0675847114', 'test@gmail.com', '$2y$10$gulzjb1wR8Y0StCs9UPJxO1fxTRvPK/0f9kc7yYpDxLotmfycnlnO');
-
---
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `Cart`
---
-ALTER TABLE `Cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
 
 --
 -- Index pour la table `Category`
@@ -236,11 +257,17 @@ ALTER TABLE `Options`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `mail` (`mail`);
+
+--
 -- Index pour la table `Orders`
 --
 ALTER TABLE `Orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cart_id` (`cart_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -255,7 +282,16 @@ ALTER TABLE `Product`
 --
 ALTER TABLE `ProductOption`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `option_id` (`option_id`);
+  ADD KEY `option_id` (`option_id`),
+  ADD KEY `ProductOption_ibfk_1` (`product_id`);
+
+--
+-- Index pour la table `Cart`
+--
+ALTER TABLE `Cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `cart_id` (`cart_id`);
 
 --
 -- Index pour la table `Promo`
@@ -264,21 +300,8 @@ ALTER TABLE `Promo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `Users`
---
-ALTER TABLE `Users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `mail` (`mail`);
-
---
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `Cart`
---
-ALTER TABLE `Cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `Category`
@@ -293,10 +316,16 @@ ALTER TABLE `Options`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT pour la table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
 -- AUTO_INCREMENT pour la table `Orders`
 --
 ALTER TABLE `Orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `Product`
@@ -311,32 +340,25 @@ ALTER TABLE `ProductOption`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT pour la table `Cart`
+--
+ALTER TABLE `Cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT pour la table `Promo`
 --
 ALTER TABLE `Promo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pour la table `Users`
---
-ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `Cart`
---
-ALTER TABLE `Cart`
-  ADD CONSTRAINT `Cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `ProductOption` (`id`);
 
 --
 -- Contraintes pour la table `Orders`
 --
 ALTER TABLE `Orders`
-  ADD CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `Cart` (`id`),
   ADD CONSTRAINT `Orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`);
 
 --
@@ -351,6 +373,14 @@ ALTER TABLE `Product`
 ALTER TABLE `ProductOption`
   ADD CONSTRAINT `ProductOption_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`),
   ADD CONSTRAINT `ProductOption_ibfk_2` FOREIGN KEY (`option_id`) REFERENCES `Options` (`id`);
+
+--
+-- Contraintes pour la table `Cart`
+--
+ALTER TABLE `Cart`
+  ADD CONSTRAINT `Cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `ProductOption` (`id`),
+  ADD CONSTRAINT `Cart_ibfk_2` FOREIGN KEY (`cart_id`) REFERENCES `Orders` (`id`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
