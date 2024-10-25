@@ -1,0 +1,1 @@
+<a title="Mon compte"  id="account" data-id="account" href="#"> <img data-id="account" src="../assets/made_my-account_desktop.svg" alt="My Account" class="aspect-square hover:cursor-pointer"></a>
