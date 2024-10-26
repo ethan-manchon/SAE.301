@@ -24,7 +24,7 @@ class Orders implements JsonSerializable {
     }
 
     // rien
-    public function jsonSerialize() : array{
+    public function jsonSerialize() {
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,

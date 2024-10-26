@@ -13,5 +13,4 @@ let CartProductsView = {
     },
 };
 
-
 export { CartProductsView };

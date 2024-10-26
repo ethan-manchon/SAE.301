@@ -14,10 +14,8 @@ let CartView = {
         let modifiedTemplate = productList.replace(/{{price}}/, i);
         html += genericRenderer(modifiedTemplate, data);
 
-
         return html;
     }
 };
-
 
 export { CartView };
