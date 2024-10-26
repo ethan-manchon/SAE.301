@@ -79,8 +79,7 @@ class Promo implements JsonSerializable {
      *  Define how to convert/serialize a Promo to a JSON format
      *  This method will be automatically invoked by json_encode when applied to a Promo
      */
-    // précédement mixed
-    public function jsonSerialize(): array{
+    public function jsonSerialize(): mixed{
         return [
             "id" => $this->id,
             "name" => $this->name,

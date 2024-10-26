@@ -122,8 +122,7 @@ class PO implements JsonSerializable {
      *  Define how to convert/serialize a PO to a JSON format
      *  This method will be automatically invoked by json_encode when apply to a PO
      */
-    // précédement mixed
-    public function jsonSerialize(): array{
+    public function jsonSerialize(): mixed{
         return [
             "product_id" => $this->product_id,
             "option_id" => $this->option_id,
