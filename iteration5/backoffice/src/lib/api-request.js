@@ -4,8 +4,7 @@
  */
 
 
-// CHANGER a chaque iteration !!!
-let API_URL = "https://donzaud-sae301.mmi-limoges.fr/api/";
+let API_URL = "https://mmi.unilim.fr/~manchon3/iteration5/api/";
 
 
 /**
@@ -104,9 +103,6 @@ let deleteRequest = async function(uri, data){
     let options = {
         credentials: 'include',
         method: 'DELETE',
-        header: {
-            'Content-Type': 'application/json'
-        },
         body: data
     };
 

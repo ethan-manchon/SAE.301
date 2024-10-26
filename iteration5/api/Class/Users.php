@@ -121,9 +121,7 @@ class User implements JsonSerializable {
      *  Define how to convert/serialize a User to a JSON format
      *  This method will be automatically invoked by json_encode when applied to a User
      */
-
-    // mixed
-    public function jsonSerialize(): array {
+    public function jsonSerialize(): mixed {
         return [
             "id" => $this->id,
             "mail" => $this->mail,

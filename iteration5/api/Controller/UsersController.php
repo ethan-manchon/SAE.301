@@ -91,15 +91,15 @@ private function processSignInRequest(HttpRequest $request) {
         return false;
     }
 }
-//     private function processSignOutRequest(HttpRequest $request) {
-//         if (isset($_SESSION['user'])) {
-//             unset($_SESSION['user']);
-//             setcookie(session_name(), '', time() - 3600, '/');
-//         }
-//         session_unset();
-//         session_destroy();
-//         return true;
-//     }
+    private function processSignOutRequest(HttpRequest $request) {
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+            setcookie(session_name(), '', time() - 3600, '/');
+        }
+        session_unset();
+        session_destroy();
+        return true;
+    }
 }
 
 

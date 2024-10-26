@@ -3,9 +3,7 @@
  *  C'est ici : https://fr.javascript.info/fetch
  */
 
-
-// CHANGER a chaque iteration !!!
-let API_URL = "https://donzaud-sae301.mmi-limoges.fr/api/";
+let API_URL = "https://mmi.unilim.fr/~manchon3/iteration5/api/";
 
 
 /**
