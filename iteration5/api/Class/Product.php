@@ -158,7 +158,9 @@ class Product implements JsonSerializable {
      *  Define how to convert/serialize a Product to a JSON format
      *  This method will be automatically invoked by json_encode when apply to a Product
      */
-    public function jsonSerialize(): mixed { 
+
+    // mixed
+    public function jsonSerialize(): array { 
         return [
             "id" => $this->id,
             "name" => $this->name,
