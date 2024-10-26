@@ -23,7 +23,8 @@ class Orders implements JsonSerializable {
         return $this->cart_items;
     }
 
-    public function jsonSerialize() {
+    // précédement rien n'était retourné
+    public function jsonSerialize(): array{
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,

@@ -17,17 +17,17 @@
             <div class="flex flex-row gap-4 w-fit h-fit justify-evenly items-center">
 
                 <!-- Menu -->
-                <div class="flex flex-row aspect-auto gap-4">
+                <div class="flex flex-row aspect-auto items-center gap-4">
 
                     <!-- menu desktop/mobile -->
                         
-                        <div class="flex flex-row justify-center items-center gap-x-6">
+                        <div class="flex flex-row justify-center items-center gap-2">
 
                             {{account}}
 
-                            <a title="Mes favoris" href="#"> <img src="../assets/favourites-inactive-large.svg" alt="Favourites" class="aspect-square hover:cursor-pointer"></a>
+                            <a title="Mes favoris" href="#" class="flex flex-shrink-0"> <img src="../assets/favourites-inactive-large.svg" alt="Favourites" class="aspect-square hover:cursor-pointer"> </a>
                             
-                            <a title="Mon Panier" data-id="account" id="cart" href="#"> <img src="../assets/shopping-bag-large.svg" alt="Shopping Bag" class="aspect-square hover:cursor-pointer"></a>
+                            <a title="Mon Panier" data-id="account" id="cart" href="#" class="flex flex-shrink-0"> <img src="../assets/shopping-bag-large.svg" alt="Shopping Bag" class="aspect-square hover:cursor-pointer"> </a>
                         
                         </div>
 
