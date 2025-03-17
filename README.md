@@ -19,7 +19,7 @@ Nous avons travaillé sur plusieurs itérations dans l'objectif d'obtenir une pl
 ## 🛠 Technologies utilisées
 
 - 🐘 **PHP / API REST** – Gestion du backend et de l'API<br>
-- 🛢 **MySQL ** – Base de données pour stocker les informations produits et utilisateurs<br>
+- 🛢 **MySQL** – Base de données pour stocker les informations produits et utilisateurs<br>
 - 🌍 **HTML, CSS, JavaScript** – Interface utilisateur et interactions<br>
 - ⚡ **Vite/Webpack** – Développement rapide et optimisation<br>
 
