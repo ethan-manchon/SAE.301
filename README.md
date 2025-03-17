@@ -12,9 +12,9 @@ Développement d'un site de commerce en ligne dans le cadre d'un projet scolaire
 
 ## 🎯 Objectif du Projet
 
-Ce projet s'inspire du concept **Inspiration Made**, visant à développer une plateforme e-commerce dynamique et fluide, permettant aux utilisateurs de consulter des produits, les ajouter à un panier et finaliser leurs achats en ligne.
+Ce projet vise à développer une plateforme e-commerce dynamique et fluide, permettant aux utilisateurs de consulter des produits, les ajouter à un panier et finaliser leurs achats en ligne.
 
-Ce projet vise à développer une plateforme e-commerce complète, permettant aux utilisateurs de consulter des produits, les ajouter à un panier et finaliser leurs achats en ligne.
+Nous avons travailler sur plusieurs itérations dans l'objectif d'obtenir une plateforme e-commerce complète, permettant aux utilisateurs de consulter des produits, les ajouter à un panier et finaliser leurs achats en ligne.
 
 ## 🛠 Technologies utilisées
 
